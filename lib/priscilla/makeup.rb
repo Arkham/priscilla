@@ -8,6 +8,7 @@ module Priscilla
     end
 
     def decorate(message)
+      message = message.to_s
       [
         only_decorator_line,
         decorate_message(message),

@@ -33,6 +33,19 @@ module Priscilla
         )
       end
 
+      context "when passed a non-string" do
+        let(:width) { 7 }
+        let(:message) { 450 }
+
+        it "converts to string and decorates" do
+          expect(output).to eq(
+            "=======\n" +
+            "= 450 =\n" +
+            "======="
+          )
+        end
+      end
+
       context "when message is longer than given width" do
         let(:message) { "My name is Inigo Montoya, you killed my father, prepare to die" }
 
