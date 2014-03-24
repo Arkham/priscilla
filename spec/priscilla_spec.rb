@@ -9,7 +9,7 @@ describe Priscilla do
     end
 
     it "adds a method to the Kernel" do
-      expect(capture_stdout { pr("hello") }).to eq("hello\n")
+      expect(capture_stdout { pr("hello") }).to eq("hello\n\n")
     end
   end
 end

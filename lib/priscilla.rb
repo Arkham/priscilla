@@ -9,5 +9,6 @@ end
 module Kernel
   def pr(message)
     puts Priscilla::Makeup.new.decorate(message)
+    puts
   end
 end
