@@ -2,24 +2,15 @@ require 'spec_helper'
 
 module Priscilla
   describe Makeup do
-    describe "default values" do
-      subject { described_class.new }
-
-      it {
-        expect(subject.width).to eq(80)
-        expect(subject.decorator).to eq("=")
-      }
-    end
-
     describe "#decorate" do
       let(:width) { 35 }
       let(:decorator) { "=" }
 
       subject do
-        described_class.new(
+        described_class.new(double(
           width: width,
           decorator: decorator
-        )
+        ))
       end
 
       let(:message) { "A cock in a frock on a rock" }

@@ -1,14 +1,10 @@
 require "priscilla/version"
+require "priscilla/configuration"
 require "priscilla/makeup"
-
-module Priscilla
-  DEFAULT_WIDTH = 80
-  DEFAULT_DECORATOR = "="
-end
 
 module Kernel
   def pr(message)
-    puts Priscilla::Makeup.new.decorate(message)
+    puts Priscilla::Makeup.new(Priscilla.configuration).decorate(message)
     puts
   end
 end

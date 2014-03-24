@@ -1,10 +1,12 @@
+require 'forwardable'
+
 module Priscilla
   class Makeup
-    attr_reader :width, :decorator
+    extend Forwardable
+    def_delegators :@config, :width, :decorator
 
-    def initialize(width: 80, decorator: "=")
-      @width = width
-      @decorator = decorator
+    def initialize(config)
+      @config = config
     end
 
     def decorate(message)
