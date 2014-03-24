@@ -10,21 +10,34 @@ module Priscilla
     def decorate(message)
       message = message.to_s
       [
-        only_decorator_line,
+        decorator_for(width),
         decorate_message(message),
-        only_decorator_line
+        decorator_for(width)
       ].join("\n")
     end
 
   private
 
-    def only_decorator_line
-      decorator * width
+    def decorator_for(times)
+      decorator * times
+    end
+
+    def decoratable?(message)
+      minimum_decorated_length(message) <= width
+    end
+
+    def minimum_decorated_length(message)
+      # add two decorators and two wrapping spaces
+      message.length + 4
+    end
+
+    def minimum_decorated_message(message)
+      "#{decorator} #{message} #{decorator}"
     end
 
     def decorate_message(message)
-      return message if message.length > width
-      "#{decorator} #{message} ".ljust(width, decorator)
+      return message unless decoratable?(message)
+      minimum_decorated_message(message) + decorator_for(width - minimum_decorated_length(message))
     end
   end
 end
