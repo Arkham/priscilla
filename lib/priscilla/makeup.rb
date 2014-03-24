@@ -22,8 +22,8 @@ module Priscilla
     end
 
     def decorate_message(message)
-      " #{message} ".center(width, decorator)
+      return message if message.length > width
+      "#{decorator} #{message} ".ljust(width, decorator)
     end
-
   end
 end
