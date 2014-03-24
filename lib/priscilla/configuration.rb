@@ -10,7 +10,7 @@ module Priscilla
 
   class Configuration
     DEFAULT_WIDTH = 80
-    DEFAULT_DECORATOR = "="
+    DEFAULT_DECORATOR = "=".light_magenta
 
     attr_accessor :width, :decorator
 

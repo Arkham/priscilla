@@ -1,3 +1,5 @@
+require 'colorize'
+
 require "priscilla/version"
 require "priscilla/configuration"
 require "priscilla/makeup"
