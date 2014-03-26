@@ -20,12 +20,16 @@ module Priscilla
 
   private
 
+    def decorator_length
+      @decorator_length ||= decorator.uncolorize.length
+    end
+
     def decoratable_width
-      (width / decorator.length) * decorator.length
+      (width / decorator_length) * decorator_length
     end
 
     def decorated_line
-      decorator * (decoratable_width / decorator.length)
+      decorator * (decoratable_width / decorator_length)
     end
 
     def decoratable?(message)
@@ -34,7 +38,7 @@ module Priscilla
 
     def minimum_decorated_length(message)
       # add two decorators and two wrapping spaces
-      message.length + (decorator.length * 2) + 2
+      message.length + (decorator_length * 2) + 2
     end
 
     def message_template(message)

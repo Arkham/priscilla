@@ -60,6 +60,18 @@ module Priscilla
           )
         end
       end
+
+      context "when decorator is a colorized string" do
+        let(:decorator) { "[]".blue }
+
+        it "decorates just as well" do
+          expect(output.uncolorize).to eq(
+            "[][][][][][][][][][][][][][][][][]\n" +
+            "[] A cock in a frock on a rock  []\n" +
+            "[][][][][][][][][][][][][][][][][]"
+          )
+        end
+      end
     end
   end
 end
