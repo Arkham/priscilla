@@ -19,7 +19,7 @@ module Priscilla
       it "makes a nice header around" do
         expect(output).to eq(
           "===================================\n" +
-          "= A cock in a frock on a rock =====\n" +
+          "= A cock in a frock on a rock     =\n" +
           "==================================="
         )
       end
@@ -45,6 +45,18 @@ module Priscilla
             "===================================\n" +
             "My name is Inigo Montoya, you killed my father, prepare to die\n" +
             "==================================="
+          )
+        end
+      end
+
+      context "when decorator is more than a single character" do
+        let(:decorator) { "<>" }
+
+        it "decorates just as well" do
+          expect(output).to eq(
+            "<><><><><><><><><><><><><><><><><>\n" +
+            "<> A cock in a frock on a rock  <>\n" +
+            "<><><><><><><><><><><><><><><><><>"
           )
         end
       end
