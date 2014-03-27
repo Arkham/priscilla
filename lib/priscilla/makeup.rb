@@ -3,13 +3,15 @@ require 'forwardable'
 module Priscilla
   class Makeup
     extend Forwardable
+    attr_reader :config
     def_delegators :@config, :width, :decorator
 
     def initialize(config)
-      @config = config
+      @config = config.clone
     end
 
-    def decorate(message)
+    def decorate(message, **options)
+      override_config(options)
       message = message.to_s
       [
         decorated_line,
@@ -53,6 +55,12 @@ module Priscilla
     def decorate_message(message)
       return message unless decoratable?(message)
       message_template(message)
+    end
+
+    def override_config(options)
+      options.each do |key, value|
+        config.send("#{key}=", value)
+      end
     end
   end
 end

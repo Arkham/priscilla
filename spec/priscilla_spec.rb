@@ -2,14 +2,12 @@ require 'spec_helper'
 
 describe Priscilla do
   describe "::pr" do
-    before do
-      class Priscilla::Makeup
-        def decorate(msg); msg; end
-      end
+    it "adds a method to the Kernel" do
+      expect(capture_stdout { pr("hello") }).to match(/hello/)
     end
 
-    it "adds a method to the Kernel" do
-      expect(capture_stdout { pr("hello") }).to eq("hello\n\n")
+    it "forwards additional options" do
+      expect(capture_stdout { pr("hello", decorator: '<3') }).to match(/hello/)
     end
   end
 end

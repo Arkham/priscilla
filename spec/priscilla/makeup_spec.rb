@@ -1,22 +1,26 @@
 require 'spec_helper'
+require 'ostruct'
 
 module Priscilla
   describe Makeup do
     describe "#decorate" do
       let(:width) { 35 }
       let(:decorator) { "=" }
-
-      subject do
-        described_class.new(double(
+      let(:config) {
+        OpenStruct.new(
           width: width,
           decorator: decorator
-        ))
+        )
+      }
+
+      subject do
+        described_class.new(config)
       end
 
       let(:message) { "A cock in a frock on a rock" }
       let(:output) { subject.decorate(message) }
 
-      it "makes a nice header around" do
+      it "makes a nice header around the message" do
         expect(output).to eq(
           "===================================\n" +
           "= A cock in a frock on a rock     =\n" +
@@ -52,7 +56,7 @@ module Priscilla
       context "when decorator is more than a single character" do
         let(:decorator) { "<>" }
 
-        it "decorates just as well" do
+        it "scales the decoration accordingly" do
           expect(output).to eq(
             "<><><><><><><><><><><><><><><><><>\n" +
             "<> A cock in a frock on a rock  <>\n" +
@@ -64,12 +68,28 @@ module Priscilla
       context "when decorator is a colorized string" do
         let(:decorator) { "[]".blue }
 
-        it "decorates just as well" do
+        it "ignores the colors to calculate the total width" do
           expect(output.uncolorize).to eq(
             "[][][][][][][][][][][][][][][][][]\n" +
             "[] A cock in a frock on a rock  []\n" +
             "[][][][][][][][][][][][][][][][][]"
           )
+        end
+      end
+
+      context "when options are passed" do
+        it "prefers them over the default configuration" do
+          expect(subject.decorate(message, decorator: "€")).to eq(
+            "€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€\n" +
+            "€ A cock in a frock on a rock     €\n" +
+            "€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€"
+          )
+        end
+
+        it "does not override the default configuration" do
+          old_config = config
+          subject.decorate(message, decorator: "¬_¬")
+          expect(old_config.decorator).not_to eq(subject.config.decorator)
         end
       end
     end
