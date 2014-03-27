@@ -13,17 +13,13 @@ module Priscilla
     def decorate(message, **options)
       override_config(options)
       message = message.to_s
-      [
-        decorated_line,
-        decorate_message(message),
-        decorated_line
-      ].join("\n")
+      [ decorated_line, decorate_message(message), decorated_line ].join("\n")
     end
 
   private
 
     def decorator_length
-      @decorator_length ||= decorator.uncolorize.length
+      decorator.uncolorize.length
     end
 
     def decoratable_width
