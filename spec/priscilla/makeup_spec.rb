@@ -92,6 +92,18 @@ module Priscilla
           expect(old_config.decorator).not_to eq(subject.config.decorator)
         end
       end
+
+      context "when an unicode emoji is passed" do
+        let(:decorator) { "⚡ " }
+
+        it "tries to convert it to an unicode emoji" do
+          expect(output).to eq(
+            "⚡ ⚡ ⚡ ⚡ ⚡ ⚡ ⚡ ⚡ ⚡ ⚡ ⚡ ⚡ ⚡ ⚡ ⚡ ⚡ ⚡ \n" +
+            "⚡  A cock in a frock on a rock  ⚡ \n" +
+            "⚡ ⚡ ⚡ ⚡ ⚡ ⚡ ⚡ ⚡ ⚡ ⚡ ⚡ ⚡ ⚡ ⚡ ⚡ ⚡ ⚡ "
+          )
+        end
+      end
     end
   end
 end

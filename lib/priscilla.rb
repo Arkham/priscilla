@@ -1,6 +1,7 @@
 require 'colorize'
 
 require "priscilla/version"
+require "priscilla/simple_emoji"
 require "priscilla/configuration"
 require "priscilla/makeup"
 
