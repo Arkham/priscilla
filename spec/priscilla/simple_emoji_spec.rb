@@ -5,10 +5,10 @@ describe SimpleEmoji do
     let(:emoji) { SimpleEmoji.convert(string) }
 
     context "when emoji is found" do
-      let(:string) { 'high_voltage_sign' }
+      let(:string) { ':zap:' }
 
       it 'translates a string to an emoji' do
-        expect(emoji).to eq("⚡ ")
+        expect(emoji).to eq("⚡")
       end
     end
 

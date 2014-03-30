@@ -19,11 +19,14 @@ module Priscilla
     end
 
     def decorator=(value)
-      @decorator = if value.is_a? Symbol
-        SimpleEmoji.convert(value.to_s)
-      else
-        value
-      end
+      @decorator = emojify(value)
+    end
+
+  private
+
+    def emojify(value)
+      value = ":#{value}: " if value.is_a? Symbol
+      SimpleEmoji.convert(value)
     end
   end
 end
