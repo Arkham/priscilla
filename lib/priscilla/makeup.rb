@@ -13,7 +13,7 @@ module Priscilla
     def decorate(message, **options)
       override_config(options)
       message = message.to_s
-      [ decorated_line, decorate_message(message), decorated_line ].join("\n")
+      [decorated_line, decorate_message(message), decorated_line].join("\n")
     end
 
   private
@@ -31,16 +31,16 @@ module Priscilla
     end
 
     def decoratable?(message)
-      minimum_decorated_length(message) <= decoratable_width
+      min_decorated_length(message) <= decoratable_width
     end
 
-    def minimum_decorated_length(message)
+    def min_decorated_length(message)
       # add two decorators and two wrapping spaces
       message.length + (decorator_length * 2) + 2
     end
 
     def message_template(message)
-      padding = space_for(decoratable_width - minimum_decorated_length(message))
+      padding = space_for(decoratable_width - min_decorated_length(message))
       "#{decorator} #{message} #{padding}#{decorator}"
     end
 

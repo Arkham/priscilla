@@ -6,12 +6,12 @@ module Priscilla
     describe "#decorate" do
       let(:width) { 35 }
       let(:decorator) { "=" }
-      let(:config) {
+      let(:config) do
         OpenStruct.new(
           width: width,
           decorator: decorator
         )
-      }
+      end
 
       subject do
         described_class.new(config)
