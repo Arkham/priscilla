@@ -2,6 +2,8 @@
 
 Frock up your console messages. :dancer: :dancer: :dancer:
 
+[![Build Status](https://travis-ci.org/Arkham/priscilla.png?branch=master)](https://travis-ci.org/Arkham/priscilla)
+
 ## Why Priscilla
 
 Because of [Priscilla, Queen of the Desert](http://en.wikipedia.org/wiki/The_Adventures_of_Priscilla,_Queen_of_the_Desert).
