@@ -8,8 +8,8 @@ Gem::Specification.new do |spec|
   spec.version       = Priscilla::VERSION
   spec.authors       = ["Ju Liu"]
   spec.email         = ["ju.liu@welaika.com"]
-  spec.summary       = %q{Frock up your messages}
-  spec.description   = %q{Make your messages stand out from the crowd}
+  spec.summary       = %q{Frock up your console messages}
+  spec.description   = %q{Don't let your console messages drown in a wall of text, make them stand out}
   spec.homepage      = "http://github.com/Arkham/priscilla"
   spec.license       = "MIT"
 
