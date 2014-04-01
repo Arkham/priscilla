@@ -16,7 +16,7 @@ module Priscilla
 end
 
 module Kernel
-  def pr(message, **options)
+  def pr(message, options = {})
     puts Priscilla::Makeup.new(Priscilla.configuration).decorate(message, options)
     puts
   end
