@@ -10,7 +10,7 @@ module Priscilla
       @config = config.clone
     end
 
-    def decorate(message, **options)
+    def decorate(message, options = {})
       override_config(options)
       message = message.to_s
       [decorated_line, decorate_message(message), decorated_line].join("\n")
