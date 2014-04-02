@@ -72,6 +72,14 @@ Priscilla.configure do |c|
 end
 ```
 
+## Troubleshoot
+
+**I can't see the fancy emojis!!! I'm on Linux!!!**
+
+On Ubuntu: `sudo apt-get install ttf-ancient-fonts`
+
+On Fedora: `yum install gdouros-symbola-fonts`
+
 ## Contribute
 
 1. Fork it ( http://github.com/Arkham/priscilla/fork )
