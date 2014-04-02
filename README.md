@@ -3,6 +3,8 @@
 Frock up your console messages. :dancer: :dancer: :dancer:
 
 [![Build Status](https://travis-ci.org/Arkham/priscilla.png?branch=master)](https://travis-ci.org/Arkham/priscilla)
+[![Code Climate](https://codeclimate.com/github/Arkham/priscilla.png)](https://codeclimate.com/github/Arkham/priscilla)
+[![Coverage](https://codeclimate.com/github/Arkham/priscilla/coverage.png)](https://codeclimate.com/github/Arkham/priscilla)
 
 ## Why Priscilla
 
