@@ -14,6 +14,8 @@ describe Priscilla do
       Priscilla.configure do |c|
         c.width = 5
         c.decorator = '*'
+        c.blank_line_before = false
+        c.blank_line_after = true
       end
 
       expect(capture_stdout { pr('∆') }).to eq(
