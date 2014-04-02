@@ -4,19 +4,27 @@ module Priscilla
   class Makeup
     extend Forwardable
     attr_reader :config
-    def_delegators :@config, :width, :decorator
+    def_delegators :@config, :width, :decorator, :outputter
 
     def initialize(config)
       @config = config.clone
     end
 
-    def decorate(message, options = {})
+    def output(message, options = {})
       override_config(options)
-      message = message.to_s
-      [decorated_line, decorate_message(message), decorated_line].join("\n")
+
+      str = decorate(message)
+
+      outputter.call(str)
+      outputter.call('')
     end
 
   private
+
+    def decorate(message)
+      message = message.to_s
+      [decorated_line, decorate_message(message), decorated_line].join("\n")
+    end
 
     def decorator_length
       decorator.uncolorize.length

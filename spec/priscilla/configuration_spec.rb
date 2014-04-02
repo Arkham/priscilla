@@ -1,9 +1,16 @@
 # encoding: utf-8
 require 'spec_helper'
+require 'logger'
 
 describe Priscilla do
   describe '::configure' do
-    it 'allows to configure options' do
+    before do
+      Priscilla.configure do |c|
+        c.outputter = ->(s) { puts s }
+      end
+    end
+
+    it 'allows to configure style' do
       Priscilla.configure do |c|
         c.width = 5
         c.decorator = '*'
@@ -16,7 +23,7 @@ describe Priscilla do
       )
     end
 
-    context "emoji" do
+    context 'emoji' do
       it 'converts decorator symbols to emoji' do
         Priscilla.configure do |c|
           c.width = 8
@@ -42,6 +49,25 @@ describe Priscilla do
           "⚡ 💃 🙅 🐸 ⚡ 💃 🙅 🐸 ⚡ 💃 🙅 🐸 \n\n"
         )
       end
+    end
+
+    it 'allows to use a different outputter' do
+      class DummyLogger
+        def debug(s)
+          s
+        end
+      end
+
+      Priscilla.configure do |c|
+        c.outputter = ->(s) { DummyLogger.new.debug s }
+        c.width = 10
+      end
+
+      expect(pr('oh hai')).to eq(
+        "**********\n" +
+        "* oh hai *\n" +
+        "**********\n\n"
+      )
     end
   end
 end

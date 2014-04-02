@@ -2,12 +2,14 @@ module Priscilla
   class Configuration
     DEFAULT_WIDTH = 80
     DEFAULT_DECORATOR = ':dancer: '
+    DEFAULT_OUTPUTTER = ->(s) { puts s }
 
-    attr_accessor :width, :decorator
+    attr_accessor :width, :decorator, :outputter
 
     def initialize
       self.width = DEFAULT_WIDTH
       self.decorator = DEFAULT_DECORATOR
+      self.outputter = DEFAULT_OUTPUTTER
     end
 
     def decorator=(value)
