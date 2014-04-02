@@ -1,13 +1,10 @@
 module Priscilla
   class Configuration
-    DEFAULT_WIDTH = 80
-    DEFAULT_DECORATOR = ':dancer: '
-
-    attr_accessor :width, :decorator
+    attr_accessor :width, :decorator, :outputter,
+                  :blank_line_before, :blank_line_after
 
     def initialize
-      self.width = DEFAULT_WIDTH
-      self.decorator = DEFAULT_DECORATOR
+      initialize_defaults
     end
 
     def decorator=(value)
@@ -15,6 +12,14 @@ module Priscilla
     end
 
   private
+
+    def initialize_defaults
+      self.width = 80
+      self.decorator = ':dancer: '
+      self.outputter = ->(s) { puts s }
+      self.blank_line_before = false
+      self.blank_line_after = true
+    end
 
     def emojify(value)
       value = ":#{value}: " if value.is_a? Symbol

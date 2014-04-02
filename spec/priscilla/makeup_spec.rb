@@ -4,13 +4,16 @@ require 'ostruct'
 
 module Priscilla
   describe Makeup do
-    describe "#decorate" do
+    describe "#output" do
       let(:width) { 35 }
       let(:decorator) { "=" }
+      let(:outputter) { ->(s) { puts s } }
+
       let(:config) do
         OpenStruct.new(
           width: width,
-          decorator: decorator
+          decorator: decorator,
+          outputter: outputter
         )
       end
 
@@ -19,13 +22,13 @@ module Priscilla
       end
 
       let(:message) { "A cock in a frock on a rock" }
-      let(:output) { subject.decorate(message) }
+      let(:output) { capture_stdout { subject.output(message) } }
 
       it "makes a nice header around the message" do
         expect(output).to eq(
           "===================================\n" +
           "= A cock in a frock on a rock     =\n" +
-          "==================================="
+          "===================================\n"
         )
       end
 
@@ -37,7 +40,7 @@ module Priscilla
           expect(output).to eq(
             "=======\n" +
             "= 450 =\n" +
-            "======="
+            "=======\n"
           )
         end
       end
@@ -49,7 +52,7 @@ module Priscilla
           expect(output).to eq(
             "===================================\n" +
             "My name is Inigo Montoya, you killed my father, prepare to die\n" +
-            "==================================="
+            "===================================\n"
           )
         end
       end
@@ -61,7 +64,7 @@ module Priscilla
           expect(output).to eq(
             "<><><><><><><><><><><><><><><><><>\n" +
             "<> A cock in a frock on a rock  <>\n" +
-            "<><><><><><><><><><><><><><><><><>"
+            "<><><><><><><><><><><><><><><><><>\n"
           )
         end
       end
@@ -73,23 +76,25 @@ module Priscilla
           expect(output.uncolorize).to eq(
             "[][][][][][][][][][][][][][][][][]\n" +
             "[] A cock in a frock on a rock  []\n" +
-            "[][][][][][][][][][][][][][][][][]"
+            "[][][][][][][][][][][][][][][][][]\n"
           )
         end
       end
 
       context "when options are passed" do
         it "prefers them over the default configuration" do
-          expect(subject.decorate(message, decorator: "€")).to eq(
+          res = capture_stdout { subject.output(message, decorator: "€") }
+
+          expect(res).to eq(
             "€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€\n" +
             "€ A cock in a frock on a rock     €\n" +
-            "€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€"
+            "€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€\n"
           )
         end
 
         it "does not override the default configuration" do
           old_config = config
-          subject.decorate(message, decorator: "¬_¬")
+          subject.output(message, decorator: "¬_¬")
           expect(old_config.decorator).not_to eq(subject.config.decorator)
         end
       end
@@ -101,7 +106,7 @@ module Priscilla
           expect(output).to eq(
             "⚡ ⚡ ⚡ ⚡ ⚡ ⚡ ⚡ ⚡ ⚡ ⚡ ⚡ ⚡ ⚡ ⚡ ⚡ ⚡ ⚡ \n" +
             "⚡  A cock in a frock on a rock  ⚡ \n" +
-            "⚡ ⚡ ⚡ ⚡ ⚡ ⚡ ⚡ ⚡ ⚡ ⚡ ⚡ ⚡ ⚡ ⚡ ⚡ ⚡ ⚡ "
+            "⚡ ⚡ ⚡ ⚡ ⚡ ⚡ ⚡ ⚡ ⚡ ⚡ ⚡ ⚡ ⚡ ⚡ ⚡ ⚡ ⚡ \n"
           )
         end
       end
