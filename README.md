@@ -67,8 +67,21 @@ If you're using rails create an initializer in `config/initializers/priscilla.rb
 
 ```ruby
 Priscilla.configure do |c|
-  c.width = 80              # default
-  c.decorator = ':dancer: ' # default
+  c.width = 80                   # default
+  c.decorator = ':dancer: '      # default
+  c.outputter = ->(s) { puts s } # default
+  c.blank_line_before = false    # default
+  c.blank_line_after = true      # default
+end
+```
+
+If you prefer to use the Rails logger, here is a configuration example:
+
+```ruby
+Priscilla.configure do |c|
+  c.outputter = ->(s) { Rails.logger.debug s }
+  c.blank_line_before = true
+  c.blank_line_after = false
 end
 ```
 
