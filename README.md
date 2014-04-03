@@ -18,25 +18,34 @@ Because of [Priscilla, Queen of the Desert](http://en.wikipedia.org/wiki/The_Adv
 
 Add this line to your application's Gemfile:
 
-    gem 'priscilla'
+```ruby
+gem 'priscilla'
+```
 
 And then execute:
 
-    $ bundle
+```bash
+$ bundle
+```
 
 Or install it yourself as:
 
-    $ gem install priscilla
+```bash
+$ gem install priscilla
+```
 
 ## Use
 
 Require the gem:
-
-    require 'priscilla'
+```ruby
+require 'priscilla'
+```
 
 Use `pr` to frock up your console messages
 
-    pr "A cock in a frock on a rock"
+```ruby
+pr "A cock in a frock on a rock"
+```
 
 Result
 
@@ -50,18 +59,19 @@ Priscilla supports a lot of different decorators:
 
 ![Strings](images/strings.png)
 
-**Colored Strings**
+**Colored Strings, [view all options](https://github.com/fazibear/colorize)**
 
 ![Colored Strings](images/colored_strings.png)
 ![Colored Strings, part 2](images/colored_strings_two.png)
 
-**Unicode Emojis**
+**Unicode Emojis, [view all options](http://en.wikipedia.org/wiki/Emoji)**
 
 ![Unicode Emojis](images/unicode_emojis.png)
 
-**Text Emojis**
+**Text Emojis, [view all options](http://www.emoji-cheat-sheet.com/)**
 
 ![Text Emojis](images/text_emojis.png)
+
 
 ## Configure
 
@@ -76,13 +86,13 @@ Priscilla.configure do |c|
 end
 ```
 
-If you prefer to use the Rails logger, here is an example:
+Or if you prefer to use the Rails logger:
 
 ```ruby
 Priscilla.configure do |c|
   c.width = 80
   c.decorator = ':dancer: '
-  c.presenter = ->(msg) { Rails.logger.debug msg }
+  c.presenter = ->(msg) { Rails.logger.debug "\n#{msg}" }
 end
 ```
 
