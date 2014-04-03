@@ -25,7 +25,7 @@ module Priscilla
         expect(output).to eq(
           "===================================\n" +
           "= A cock in a frock on a rock     =\n" +
-          "==================================="
+          "===================================\n"
         )
       end
 
@@ -37,7 +37,7 @@ module Priscilla
           expect(output).to eq(
             "=======\n" +
             "= 450 =\n" +
-            "======="
+            "=======\n"
           )
         end
       end
@@ -49,7 +49,7 @@ module Priscilla
           expect(output).to eq(
             "===================================\n" +
             "My name is Inigo Montoya, you killed my father, prepare to die\n" +
-            "==================================="
+            "===================================\n"
           )
         end
       end
@@ -61,7 +61,7 @@ module Priscilla
           expect(output).to eq(
             "<><><><><><><><><><><><><><><><><>\n" +
             "<> A cock in a frock on a rock  <>\n" +
-            "<><><><><><><><><><><><><><><><><>"
+            "<><><><><><><><><><><><><><><><><>\n"
           )
         end
       end
@@ -73,7 +73,7 @@ module Priscilla
           expect(output.uncolorize).to eq(
             "[][][][][][][][][][][][][][][][][]\n" +
             "[] A cock in a frock on a rock  []\n" +
-            "[][][][][][][][][][][][][][][][][]"
+            "[][][][][][][][][][][][][][][][][]\n"
           )
         end
       end
@@ -83,7 +83,7 @@ module Priscilla
           expect(subject.decorate(message, decorator: "€")).to eq(
             "€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€\n" +
             "€ A cock in a frock on a rock     €\n" +
-            "€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€"
+            "€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€\n"
           )
         end
 
@@ -101,7 +101,7 @@ module Priscilla
           expect(output).to eq(
             "⚡ ⚡ ⚡ ⚡ ⚡ ⚡ ⚡ ⚡ ⚡ ⚡ ⚡ ⚡ ⚡ ⚡ ⚡ ⚡ ⚡ \n" +
             "⚡  A cock in a frock on a rock  ⚡ \n" +
-            "⚡ ⚡ ⚡ ⚡ ⚡ ⚡ ⚡ ⚡ ⚡ ⚡ ⚡ ⚡ ⚡ ⚡ ⚡ ⚡ ⚡ "
+            "⚡ ⚡ ⚡ ⚡ ⚡ ⚡ ⚡ ⚡ ⚡ ⚡ ⚡ ⚡ ⚡ ⚡ ⚡ ⚡ ⚡ \n"
           )
         end
       end

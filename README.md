@@ -65,12 +65,24 @@ Priscilla supports a lot of different decorators:
 
 ## Configure
 
-If you're using rails create an initializer in `config/initializers/priscilla.rb`:
+If you're using Rails, create an initializer in `config/initializers/priscilla.rb`:
+
+```ruby
+# This is the default configuration
+Priscilla.configure do |c|
+  c.width = 80
+  c.decorator = ':dancer: '
+  c.presenter = ->(msg) { puts msg; puts }
+end
+```
+
+If you prefer to use the Rails logger, here is an example:
 
 ```ruby
 Priscilla.configure do |c|
-  c.width = 80              # default
-  c.decorator = ':dancer: ' # default
+  c.width = 80
+  c.decorator = ':dancer: '
+  c.presenter = ->(msg) { Rails.logger.debug msg }
 end
 ```
 

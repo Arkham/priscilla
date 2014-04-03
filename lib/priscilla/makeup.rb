@@ -13,7 +13,9 @@ module Priscilla
     def decorate(message, options = {})
       override_config(options)
       message = message.to_s
-      [decorated_line, decorate_message(message), decorated_line].join("\n")
+
+      [decorated_line, decorate_message(message), decorated_line]
+        .map { |string| string << "\n" }.join
     end
 
   private
